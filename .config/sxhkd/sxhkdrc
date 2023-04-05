@@ -4,7 +4,7 @@ super + Return
 
 #ЛАУНЧЕР ПРИЛОЖЕНИЙ
 super + d
-	rofi -show drun
+	rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -no-drun-show-actions -theme ~/.config/rofi/config.rasi
 
 #ЗАКРЫТЬ ОКНО ИЛИ УБИТЬ ЕГО
 super + shift + q
