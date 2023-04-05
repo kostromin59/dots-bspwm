@@ -2,6 +2,10 @@
 super + Return
 	kitty
 
+#FLAMESHOT
+Print
+  flameshot gui
+
 #ЛАУНЧЕР ПРИЛОЖЕНИЙ
 super + d
 	rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -no-drun-show-actions -theme ~/.config/rofi/config.rasi
