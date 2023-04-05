@@ -5,6 +5,7 @@ numlockx &
 nitrogen --restore &
 picom &
 eww open bar &
+flameshot &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
