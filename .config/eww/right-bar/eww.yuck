@@ -1,0 +1,65 @@
+(defpoll VOLUME :interval "1s" `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+(defpoll MICVOLUME :interval "1s" `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+(defpoll TIME :interval "1s" `date +%H:%M:%S`)
+(defpoll TODAY :interval "1s" `date "+%d.%m.%Y, %A"`)
+
+(defwindow right-bar
+  :stacking "fg"
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry
+    :x "1310px"
+    :y "50px"
+    :width "600px"
+    :height "1020px")
+  (box
+    :orientation "v"
+    :spacing 10
+    :space-evenly false
+    (time)
+    (control)
+    (sound)))
+
+(defwidget time []
+  (box
+    :orientation "v"
+    :space-evenly false
+    (label :class "now" :text TIME)
+    (label :class "today" :text TODAY)))
+
+(defwidget control []
+  (box
+    :class "cards"
+    :spacing 10
+    (button
+      :class "card"
+      (label :text "WIFI"))
+    (button
+      :class "card"
+      (label :text "WIFI"))
+    (button
+      :class "card"
+      (label :text "WIFI"))
+    (button
+      :class "card"
+      (label :text "WIFI"))
+    )
+)
+
+(defwidget sound []
+  (box
+    :class "sound"
+    :orientation "v"
+    :space-evenly false
+    (scale
+      :class "sound-scale"
+      :value VOLUME
+      :onchange "amixer set Master {}%"
+      :min "0"
+      :max "100")
+    (scale
+      :class "mic-scale"
+      :value MICVOLUME 
+      :onchange "amixer set Capture {}%"
+      :min "0"
+      :max "100")))
