@@ -1,7 +1,12 @@
-(defpoll VOLUME :interval "1s" `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
-(defpoll MICVOLUME :interval "1s" `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+(defpoll VOLUME :interval "1s" :initial `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'` `amixer get Master | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
+(defpoll MICVOLUME :interval "1s" :initial `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'` `amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%'`)
 (defpoll TIME :interval "1s" `date +%H:%M:%S`)
 (defpoll TODAY :interval "1s" `date "+%d.%m.%Y, %A"`)
+(defpoll WIFI :interval "10s" `nmcli c | grep wlan0 | awk '{print ($1)}'`)
+(defpoll BRIGHTNESS :interval "0.1s" `brightnessctl g`)
+(defpoll BRIGHTNESSMAX :interval "5s" :initial `brightnessctl m` `brightnessctl m`)
+(defpoll BLUETOOTH :interval "5s" :initial `systemctl is-active bluetooth.service |tr a-z A-Z` `systemctl is-active bluetooth.service |tr a-z A-Z`)
+
 
 (defwindow right-bar
   :stacking "fg"
@@ -18,7 +23,31 @@
     :space-evenly false
     (time)
     (control)
-    (sound)))
+    (sound)
+    (box :class "calendar-box"
+      (calendar
+        :class "calendar"))
+    (power)
+    ))
+
+(defwidget power []
+  (box
+    :class "power"
+    :spacing 10
+    (button
+      :onclick "reboot -p"
+      "")
+    (button
+      :onclick "reboot"
+      "")
+    (button
+      :onclick "systemctl suspend"
+      "")
+    (button
+      :onclick "logout"
+      "󰠜")
+    )
+  )
 
 (defwidget time []
   (box
@@ -30,19 +59,48 @@
 (defwidget control []
   (box
     :class "cards"
+    :space-evenly false
     :spacing 10
     (button
       :class "card"
-      (label :text "WIFI"))
+      :width 130
+      :onclick "kitty nmtui && echo"
+      (box
+        :orientation "v"
+        :space-evenly false
+        :anchor "center"
+        (label :class "icon" :text "")
+        (label :class "text" :limit-width 10 :text WIFI)))
     (button
       :class "card"
-      (label :text "WIFI"))
+      :width 130
+      :onclick "blueman-manager && echo"
+      (box
+        :orientation "v"
+        :space-evenly false
+        :anchor "center"
+        (label :class "icon" :text "󰂯")
+        (label :class "text" :limit-width 10 :text BLUETOOTH)))
     (button
       :class "card"
-      (label :text "WIFI"))
+      :width 130
+      (box
+        :orientation "v"
+        :space-evenly false
+        :anchor "center"
+        (label :class "icon" :text {EWW_BATTERY.BAT0.status == "Charging" ? "󰂄" : "󰂀"})
+        (label :class "text" :limit-width 10 :text "${EWW_BATTERY.BAT0.capacity}%")))
     (button
       :class "card"
-      (label :text "WIFI"))
+      :onclick "brightnessctl set +5"
+      :onrightclick "brightnessctl set 5-"
+      :width 130
+      (box
+        :orientation "v"
+        :space-evenly false
+        :anchor "center"
+        (label :class "icon" :text "󰃠")
+        (label :class "text" :limit-width 10 :text "${BRIGHTNESS} (${round(BRIGHTNESS*100/BRIGHTNESSMAX,0)}%)")))
     )
 )
 

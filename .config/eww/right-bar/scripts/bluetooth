@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[  "$(systemctl is-active "bluetooth.service")" = "active" ]]; then
+  device_info=$(bluetoothctl info "$device")
+  if  echo "$device_info" | grep -q "Connected: yes"; then
+   echo `bluetoothctl info | grep Name | sed -e 's/Name://g '` 
+ else
+  echo "Disconnected" 
+ fi
+fi
