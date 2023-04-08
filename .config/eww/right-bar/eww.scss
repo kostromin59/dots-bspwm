@@ -1,0 +1,147 @@
+$bg: #181926;
+$bg-secondary: #1e2030;
+$mauve: #c6a0f6;
+$blue: #8aadf4;
+$red: #ed8796;
+$text: #cad3f5;
+
+* {
+  background-position: left top;
+}
+
+.right-bar {
+  border-radius: 12px;
+  background-color: $bg;
+  border: 2px solid $blue;
+  color: $text;
+  font-family: JetBrainsMono;
+}
+
+.now {
+  font-size: 96px;
+}
+
+.today {
+  font-size: 24px;
+}
+
+.sound {
+  padding: 10px;
+  background-color: $bg-secondary;
+  margin: 0 20px;
+  border-radius: 12px;
+}
+
+.sound-scale,
+.mic-scale {
+  padding: 10px;
+  padding-left: 45px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 24px;
+}
+
+.sound-scale {
+  background-image: url("assets/sound.svg");
+}
+
+.mic-scale {
+  background-image: url("assets/mic.svg");
+}
+
+slider {
+  all: unset;
+}
+
+scale trough {
+  all: unset;
+  background-color: $text;
+  border: none;
+  min-height: 12px;
+  border-radius: 12px;
+
+  highlight {
+    all: unset;
+    border-radius: 12px;
+    background-color: $red;
+  }
+}
+
+.cards {
+  margin: 0 20px;
+}
+
+.card {
+  background: $bg-secondary;
+  border: none;
+  box-shadow: none;
+  color: $text;
+  font-size: 24px;
+  min-height: 120px;
+  text-shadow: none;
+  border-radius: 12px;
+
+  &:hover {
+    background-color: $mauve;
+    color: $bg-secondary;
+  }
+
+  .text {
+    font-size: 18px;
+  }
+
+  .icon {
+    font-size: 64px;
+    outline-offset: -3px;
+  }
+}
+
+.calendar {
+  background-color: $bg-secondary;
+  color: $text;
+  font-size: 18px;
+  padding: 15px 10px;
+  border: none;
+  border-radius: 12px;
+
+  &-box {
+    padding: 10px;
+    padding-bottom: 0;
+    background-color: $bg-secondary;
+    border-radius: 12px;
+    margin: 0 20px;
+  }
+
+  .header,
+  .button {
+    background-color: $bg;
+  }
+
+  .highlight {
+    font-size: 24px;
+  }
+
+  &:selected {
+    color: $red;
+  }
+}
+
+.power {
+  margin: 0 20px;
+  min-height: 100px;
+
+  button {
+    background: $bg-secondary;
+    border: none;
+    box-shadow: none;
+    color: $text;
+    font-size: 48px;
+    text-shadow: none;
+    border-radius: 12px;
+
+    &:hover {
+      background-color: $mauve;
+      color: $bg-secondary;
+    }
+  }
+}
