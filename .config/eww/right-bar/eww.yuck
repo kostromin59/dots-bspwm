@@ -35,17 +35,17 @@
     :class "power"
     :spacing 10
     (button
-      :onclick "reboot -p"
-      "")
+      :onclick "shutdown now"
+      " ")
     (button
       :onclick "reboot"
       "")
     (button
       :onclick "systemctl suspend"
-      "")
+      " ")
     (button
-      :onclick "logout"
-      "󰠜")
+      :onclick "bspc quit"
+      "󰠜 ")
     )
   )
 
@@ -69,7 +69,7 @@
         :orientation "v"
         :space-evenly false
         :anchor "center"
-        (label :class "icon" :text "")
+        (label :class "icon" :text " ")
         (label :class "text" :limit-width 10 :text WIFI)))
     (button
       :class "card"
@@ -99,7 +99,7 @@
         :orientation "v"
         :space-evenly false
         :anchor "center"
-        (label :class "icon" :text "󰃠")
+        (label :class "icon" :text "󰃠 ")
         (label :class "text" :limit-width 10 :text "${BRIGHTNESS} (${round(BRIGHTNESS*100/BRIGHTNESSMAX,0)}%)")))
     )
 )

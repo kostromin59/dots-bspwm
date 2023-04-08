@@ -5,6 +5,10 @@ $blue: #8aadf4;
 $red: #ed8796;
 $text: #cad3f5;
 
+* {
+  background-position: left top;
+}
+
 .right-bar {
   border-radius: 12px;
   background-color: $bg;
@@ -88,6 +92,7 @@ scale trough {
 
   .icon {
     font-size: 64px;
+    outline-offset: -3px;
   }
 }
 
