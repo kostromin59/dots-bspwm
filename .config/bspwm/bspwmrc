@@ -6,6 +6,7 @@ nitrogen --restore &
 picom &
 eww open bar &
 flameshot &
+polybar &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
