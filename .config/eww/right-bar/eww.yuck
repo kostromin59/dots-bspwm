@@ -88,8 +88,8 @@
         :orientation "v"
         :space-evenly false
         :anchor "center"
-        (label :class "icon" :text {EWW_BATTERY.BAT0.status == "Charging" ? "󰂄" : "󰂀"})
-        (label :class "text" :limit-width 10 :text "${EWW_BATTERY.BAT0.capacity}%")))
+        (label :class "icon" :text {EWW_BATTERY == "" ? "󰂄" : EWW_BATTERY.BAT0.status == "Charging" ? "󰂄" : "󰂀"})
+        (label :class "text" :limit-width 10 :text {EWW_BATTERY == "" ? "FULL" : "${EWW_BATTERY.BAT0.capacity}%"})))
     (button
       :class "card"
       :onclick "brightnessctl set +5"
@@ -100,7 +100,7 @@
         :space-evenly false
         :anchor "center"
         (label :class "icon" :text "󰃠 ")
-        (label :class "text" :limit-width 10 :text "${BRIGHTNESS} (${round(BRIGHTNESS*100/BRIGHTNESSMAX,0)}%)")))
+        (label :class "text" :limit-width 10 :text {BRIGHTNESSMAX == 1 ? "MAX" : "${BRIGHTNESS} (${round(BRIGHTNESS*100/BRIGHTNESSMAX,0)}%)"})))
     )
 )
 

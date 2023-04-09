@@ -6,6 +6,10 @@ super + Return
 Print
   flameshot gui
 
+#МИКРОФОН
+Alt_R
+  exec ~/.config/sxhkd/mic.sh
+
 #ЛАУНЧЕР ПРИЛОЖЕНИЙ
 super + d
 	rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -no-drun-show-actions -theme ~/.config/rofi/config.rasi
@@ -70,6 +74,10 @@ super + {o,i}
 #ПЕРЕКЛЮЧИТСЯ НА ВОРКСПЕЙС ИЛИ ПЕРЕТАЩИТЬ НА НЕГО АКТИВНОЕ ОКНО
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#ВТОРОЙ МОНИТОР
+# super + {_,shift + }{F1,F2,F3,F4,F5,F6,F7,F8,F9,F10}
+# 	bspc {desktop -f,node -d} {'1A','2A','3A','4A','5A','6A','7A','8A','9A','10A'}
 
 #ВЫБРАТЬ НАПРАВЛЕНИЕ В КОТОРОМ ОТКРОЕТСЯ НОВОЕ ОКНО
 super + ctrl + {h,j,k,l}

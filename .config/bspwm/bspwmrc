@@ -6,11 +6,15 @@ nitrogen --restore &
 picom &
 eww open bar &
 flameshot &
-polybar &
+polybar example &
+# polybar example2 &
+# xrandr --output DisplayPort-0 --mode 1920x1080 --rate 144 &
+# xrandr --output DisplayPort-1 --mode 1920x1080 --rate 144 &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+# bspc monitor DisplayPort-1 -d 1A 2A 3A 4A 5A 6A 7A 8A 9A 10A
 
 bspc config border_width         2
 bspc config window_gap          10

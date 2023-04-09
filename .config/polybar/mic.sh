@@ -1,8 +1,8 @@
 #!/bin/sh
 
-if [ $(pulseaudio-ctl | grep "Is source muted" | wc -c) -eq 47 ]
+if [ $(amixer get Capture | tail -n1 | awk -F ' ' '{print $5}' | tr -d '[]%') = 0 ]
 then
-  echo "  " # Muted Icon (Install Some icon pack like feather, nerd-fonts)
+  echo "" # Muted Icon (Install Some icon pack like feather, nerd-fonts)
 else
-  echo "  " # Unmuted Icon (Install Some icon pack like feather, nerd-fonts)
+  echo "" # Unmuted Icon (Install Some icon pack like feather, nerd-fonts)
 fi
